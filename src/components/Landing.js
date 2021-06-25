@@ -55,11 +55,7 @@ function handleJoinGame({
     });
 }
 
-const Landing = ({ title }) => {
-  const history = useHistory();
-  const joinGameInputRef = useRef(null);
-  const [errorMsg, setErrorMsg] = useState({});
-  const [loading, setLoading] = useState("");
+const Landing = ({ title, host }) => {
   return (
     <LandingWrapper>
       <GlobalStyle />
@@ -69,52 +65,7 @@ const Landing = ({ title }) => {
       <Heading>
         <LogoIcon />
       </Heading>
-      <Form
-        onSubmit={(e) =>
-          handleJoinGame({
-            e,
-            setLoading,
-            joinGameInputRef,
-            history,
-            setErrorMsg,
-          })
-        }
-      >
-        <JoinGameLabel htmlFor="joingame">GOT THE GAME CODE?</JoinGameLabel>
-        <JoinGameInput
-          ref={joinGameInputRef}
-          id="joingame"
-          minLength={MIN_ROOM_NAME_CHARS}
-          maxLength={MAX_ROOM_NAME_CHARS}
-          text="text"
-          required
-        />
-        <GreenButton type="submit" disabled={loading === "join"}>
-          Join Game
-        </GreenButton>
-        {errorMsg.type === "join" && !errorMsg.message ? (
-          <GameExistsMessage>
-            Game doesn't exist. Would you like to{" "}
-            <Link to={`/g/${joinGameInputRef.current.value}`}>create it?</Link>
-          </GameExistsMessage>
-        ) : (
-          errorMsg.type === "join" &&
-          errorMsg.message && <ErrorText>{errorMsg.message}</ErrorText>
-        )}
-        <OrTextWrap>
-          <OrText>OR</OrText>
-        </OrTextWrap>
-        <BlueButton type="button" to="/games">
-          Public Games
-        </BlueButton>
-      </Form>
-      <OrangeButton to="/create-game">Create Game</OrangeButton>
-      <PinkButton to="/how-to-play">How To Play</PinkButton>
-      <WhiteButton to="/create-deck">
-        Create Deck <BETAText>BETA</BETAText>
-      </WhiteButton>
-      {/* <AltButton onClick={() => history.push('/create-deck')}>Create Deck</AltButton>
-      <AltButton onClick={() => history.push('/edit-deck')}>Edit Deck</AltButton> */}
+      <JoinGameLabel htmlFor="joingame">Waiting for {host} to start the game.</JoinGameLabel>
       <footer>
         <FooterText>
           Completely free and <InlineLink href="https://github.com/sdennett55/cards-of-personality-frontend" target="_blank" rel="noopener noreferrer">open sourced</InlineLink>. No ads, accounts, or

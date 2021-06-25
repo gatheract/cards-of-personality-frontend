@@ -1,9 +1,11 @@
+/* global gatheract */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import "typeface-roboto-condensed";
+import {useHistory} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,3 +18,23 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+gatheract.init({
+  appId: 'cards-of-personality',
+  events: {
+      connected: event => {
+        if(gatheract.isHost) {
+          if(window.location.pathname == '/') {
+            window.location = '/create-game';
+          }
+        }
+      },
+      disconnected: event => {},
+      channelInfo: event => {},
+      appMessage: (data, from) => {
+        if(data.type == 'room') {
+          window.location = data.url; 
+        }
+      }
+  }
+});

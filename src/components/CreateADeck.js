@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 import {SERVER_URL} from '../constants';
 import axios from 'axios';
-import PrivacyCheck from './PrivacyCheck';
 import ChooseADeck from './ChooseADeck';
 import styled, {createGlobalStyle} from 'styled-components';
 import {Link} from 'react-router-dom';
@@ -17,7 +16,7 @@ const handleSubmit = ({
   e,
   nameOfDeck,
   setError,
-  isPrivate,
+  isPrivate=true,
   deck,
   setSecret,
   reactGA,
@@ -107,12 +106,6 @@ const CreateADeck = ({title, reactGA}) => {
           loading={loading}
           deck={deck}
           toggle
-        />
-        <PrivacyCheck
-          setIsPrivate={setIsPrivate}
-          isPrivate={isPrivate}
-          title="deck"
-          toastText="If checked, this deck will not be listed under community decks. All public decks must be approved."
         />
         <Flex>
           <WhiteButton to="/">Back</WhiteButton>

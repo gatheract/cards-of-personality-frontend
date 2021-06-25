@@ -1,8 +1,8 @@
+/* global gatheract */
 import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {SERVER_URL} from '../constants';
-import PrivacyCheck from './PrivacyCheck';
 import ChooseADeck from './ChooseADeck';
 import styled, {createGlobalStyle} from 'styled-components';
 
@@ -12,7 +12,7 @@ function handleCreateGame({
   deck,
   setError,
   setLoading,
-  isPrivate,
+  isPrivate=true,
   reactGA,
 }) {
   e.preventDefault();
@@ -87,7 +87,15 @@ function createRandomRoom({
           label: random,
         });
 
-        history.push(`/g/${random}${getQueries({deck, isPrivate})}`);
+        let url = `/g/${random}${getQueries({deck, isPrivate})}`
+        let data = {
+          type: 'room',
+          url: url
+        };
+        gatheract.sendMessage(data);
+
+        history.push(url);
+
       } else {
         createRandomRoom({
           history,
@@ -190,12 +198,6 @@ const CreateGame = ({reactGA}) => {
           />
         </Divider>
         {error && <ErrorText>{error}</ErrorText>}
-        <PrivacyCheck
-          setIsPrivate={setIsPrivate}
-          isPrivate={isPrivate}
-          title="game"
-          toastText="If checked, this game will not be listed under public games."
-        />
         <Flex>
           <WhiteButton to="/">Back</WhiteButton>
           <GreenButton>Create</GreenButton>
