@@ -7,11 +7,10 @@ import {BackIcon} from '../icons';
 import DraggableCard from './DraggableCard';
 import BlankCard from './BlankCard';
 import CardWrap from './CardWrap';
-import ChatButton from './ChatButton';
 import {MAX_PLAYERS} from '../constants';
 
 const MyCards = styled.button`
-  width: calc(100% - 50px);
+  width: 100%;
   height: 50px;
   line-height: 50px;
   font-weight: bold;
@@ -326,12 +325,6 @@ const MyCardsDropZone = ({
         >
           {getMyNameCards({myCards, userIsDragging, myName, isOver})}
         </MyCards>
-        <ChatButton
-          socket={socket}
-          myName={myName}
-          setChatOpen={setChatOpen}
-          unreadCount={unreadCount}
-        />
       </DropZoneWrap>
       <div className={cx('MyCardsContainer', {'is-open': isMyCardsOpen})}>
         <Wrapper>

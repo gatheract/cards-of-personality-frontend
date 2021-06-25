@@ -16,7 +16,6 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import queryString from 'query-string';
 import { SERVER_URL } from '../constants';
-import ChatBox from './ChatBox';
 import Tour from 'reactour';
 import './Game.css';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -936,15 +935,6 @@ class Game extends React.PureComponent {
             closeOnClick
             transition={Slide}
             pauseOnFocusLoss={false}
-          />
-          <ChatBox
-            chatOpen={this.state.chatOpen}
-            setChatOpen={this.setChatOpen}
-            socket={this.socket}
-            myName={this.state.myName}
-            setUnreadCount={this.setUnreadCount}
-            reactGA={this.props.reactGA}
-            roomId={this.roomId}
           />
         </div>
         <Tour
