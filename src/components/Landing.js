@@ -55,7 +55,7 @@ function handleJoinGame({
     });
 }
 
-const Landing = ({ title, host }) => {
+const Landing = ({ title }) => {
   return (
     <LandingWrapper>
       <GlobalStyle />
@@ -65,7 +65,7 @@ const Landing = ({ title, host }) => {
       <Heading>
         <LogoIcon />
       </Heading>
-      <JoinGameLabel htmlFor="joingame">Waiting for {host} to start the game.</JoinGameLabel>
+      <JoinGameLabel htmlFor="joingame">Waiting for the host to start the game.</JoinGameLabel>
       <footer>
         <FooterText>
           Completely free and <InlineLink href="https://github.com/sdennett55/cards-of-personality-frontend" target="_blank" rel="noopener noreferrer">open sourced</InlineLink>. No ads, accounts, or

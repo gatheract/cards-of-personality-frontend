@@ -31,7 +31,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Landing host={gatheract.host !== null ? gatheract.host.name : ""}/>
+            <Landing />
           </Route>
           <Route path="/g/:roomId">
             <Game reactGA={ReactGA} />
