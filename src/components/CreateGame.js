@@ -93,11 +93,7 @@ function createRandomRoom({
           url: url
         };
         gatheract.sendMessage(data);
-
-        setTimeout(() => {  history.push(url); }, 1000);
-        
-
-
+        history.push(url);
       } else {
         createRandomRoom({
           history,

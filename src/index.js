@@ -26,7 +26,7 @@ gatheract.init({
         console.log('connected');
         if(gatheract.isHost) {
           if(window.location.pathname == '/') {
-            window.location = '/create-game';
+            window.location = '/create-game' + window.location.search;
           }
         }
         console.log(window.location.pathname);
@@ -44,7 +44,7 @@ gatheract.init({
       appMessage: (data, from) => {
         console.log(data);
         if(data.type == 'room' && !window.location.pathname.startsWith('/g/')) {
-          window.location = data.url; 
+          window.location = data.url + window.location.search; 
         }
       }
   }
