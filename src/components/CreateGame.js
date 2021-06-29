@@ -88,12 +88,14 @@ function createRandomRoom({
         });
 
         let url = `/g/${random}${getQueries({deck, isPrivate})}`
-        history.push(url);
         let data = {
           type: 'room',
           url: url
         };
         gatheract.sendMessage(data);
+
+        setTimeout(() => {  history.push(url); }, 1000);
+        
 
 
       } else {
