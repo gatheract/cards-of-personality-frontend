@@ -23,16 +23,27 @@ gatheract.init({
   appId: 'cards-of-personality',
   events: {
       connected: event => {
+        console.log('connected');
         if(gatheract.isHost) {
           if(window.location.pathname == '/') {
             window.location = '/create-game';
           }
         }
+        console.log(window.location.pathname);
+        if(window.location.pathname.startsWith('/g/')) {
+          let data = {
+            type: 'room',
+            url: window.location.pathname
+          };
+          console.log(data);
+          gatheract.sendMessage(data);
+        }
       },
       disconnected: event => {},
       channelInfo: event => {},
       appMessage: (data, from) => {
-        if(data.type == 'room') {
+        console.log(data);
+        if(data.type == 'room' && !window.location.pathname.startsWith('/g/')) {
           window.location = data.url; 
         }
       }

@@ -25,19 +25,6 @@ const NamePopup = ({
         <>
           <form onSubmit={(e) => handleSubmit(e)}>
             <PopupInnerWrap>
-              <InviteLabel htmlFor="invite">Invite a friend</InviteLabel>
-              <Flex>
-                <InviteInput
-                  id="invite"
-                  ref={inviteInputRef}
-                  type="text"
-                  value={`${CLIENT_URL}/g/${roomId}`}
-                  readOnly
-                />
-                <IconWrap type="button" onClick={copyLink}>
-                  <CopyIcon />
-                </IconWrap>
-              </Flex>
               <NameLabel htmlFor="name">Enter your name</NameLabel>
               <NameInput
                 type="text"
